@@ -1,30 +1,39 @@
 <html>
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <script type='text/javascript'>
+    function logFun(){
+        document.getElementById('load_content').innerHTML='<div class=row id="loginsec"><div class="card" id="login"><h5 class="card-header">Login Here</h5><div class="card-body" id="login"><form action="{% url "multiclass:validate" %}" method="POST">{% csrf_token %}<div class="form-group" id="test"><input type="text" class="form-control" placeholder="Enter Username" name="u_name"></div><div class="form-group"><input type="password" class="form-control" placeholder="Enter Password" name="pass"></div><div class="form-group" id="logbut"><input type="submit" value="Login" class="btn btn-outline-dark"></div></form></div></div></div>'
+    }    
+    </script>
+
 </head>
 <body>
-    <div class=row>
-        <div class=card id=login>
-            <h5 class="card-header">Login Here</h5>
-            <div class="card-body" id="login">
-                <form action="{% url 'multiclass:validate' %}" method="POST">
-                    {% csrf_token %}
-                    <div class="form-group">
-						<input type="text" class="form-control" placeholder="Enter Username" name="u_name">
-						
-					</div>
-					<div class="form-group">
-						<input type="password" class="form-control" placeholder="Enter Password" name="pass">
-					</div>
-					<div class="form-group" id="logbut">
-						<input type="submit" value="Login" class="btn btn-outline-dark">
-					</div>
-                </form>
-            </div>
-        </div>
-    </div>
-    {{er}}
 
+    <nav class="navbar navbar-custom">
+
+        <div id="navtext" style="margin: auto auto auto 25px;">
+            <img src="https://www.flaticon.com/svg/vstatic/svg/4193/4193454.svg?token=exp=1616399308~hmac=876fa9534b1b8c1983e5f0f41deb7b39" width="30" height="30" class="d-inline-block align-top">
+            
+            <h5 class="d-inline-block align-top" id="title">Cervical Classifier</h5>
+        
+        </div>
+        
+        
+
+        <div id="logbutnav">
+            <button class='btn btn-outline-dark btn-sm' onclick="logFun()">Login</button>
+        </div>
+
+    </nav>
+    <div class="container-fluid">
+    <span id="load_content">
+        <div class=row id="beforelogin">
+            {{wrongpass}}{{wrongemail}}
+        </div>
+    </span>
+    </div>
 <style>
     body{
                 background-image: url("https://source.unsplash.com/7EK5WABscqw");
@@ -59,13 +68,28 @@
         padding: 5px;
     }
 
+    .navbar {
+                    background: rgba(241, 6, 6, 0.445);
+                    box-shadow: 0 20px 50px 0 rgba(17, 0, 7, 0.37);
+                    backdrop-filter: blur( 6.0px );
+                    height: 45px;
+                    padding: 0.5px;
+                }
+
+                #title {
+                    margin: 3.5px auto auto auto;
+                }
+
     #logbut {
         /* margin: auto auto auto 65px; */
         text-align: center;
         padding: 5px;
         
     }
-    
+
+    #logbutnav {
+                    margin: auto 25px auto auto;
+                }
 </style>
 </body>
 </html>

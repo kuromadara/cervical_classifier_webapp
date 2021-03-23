@@ -18,12 +18,28 @@ import base64
 from .models import UserRegistrationForm
 from django.contrib import messages
 
-model = load_model('static/models/model_sgd.h5')
+model = load_model('static/models/model_old.h5')
 
 def login(request):
+    msg = ''
+    wrongemail = ''
+    wrongpass = ''
+    if request.session.get('err'):
+        msg = request.session.get('err')
+        del request.session['err']
+
+    if (msg != ''):
+        for key, value in msg.items():
+            if key == 'email':
+                wrongemail = value
+                break
+            else:
+                wrongpass = value
+                break
     context = {
-        
-    }
+            'wrongpass': wrongpass,
+            'wrongemail' : wrongemail,
+            }
     return render(request, "login.html", context)
 
 def logout(request):
@@ -43,6 +59,7 @@ def validate_login(request):
             context = {
                 'er ':errors
             }
+            request.session['err'] = errors
             return redirect('/', context)
         else:
             request.session['login'] = True
