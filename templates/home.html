@@ -1,0 +1,254 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">    
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+        <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.0.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+        <script src="/assets/vendor/chart.js/dist/Chart.min.js"></script>
+        <script src="/assets/vendor/chart.js/dist/Chart.extension.js"></script>
+        <script type="text/javascript">
+            $(document).ready(
+                function(){
+                    $('input:submit').attr('disabled',true);
+                    $('input:file').change(
+                        function(){
+                            if ($(this).val()){
+                                $('input:submit').removeAttr('disabled'); 
+                            }
+                            else {
+                                $('input:submit').attr('disabled',true);
+                            }
+                        });
+                });
+
+                
+        </script>
+    </head>
+    
+    <body>
+        
+        <nav class="navbar navbar-custom">
+
+            <div id="navtext" style="margin: auto auto auto 25px;">
+                <img src="https://www.flaticon.com/svg/vstatic/svg/4193/4193454.svg?token=exp=1616399308~hmac=876fa9534b1b8c1983e5f0f41deb7b39" width="30" height="30" class="d-inline-block align-top">
+                
+                <h5 class="d-inline-block align-top" id="title">Cervical Classifier</h5>
+            
+            </div>
+            
+            
+
+            <div id="logout">
+                <a href="{% url 'multiclass:logout' %}">
+                    <button class='btn btn-outline-dark btn-sm'>Logout</button>
+                </a>
+            </div>
+
+        </nav>
+
+        <div class="background-image"></div>
+        <div class="main">
+            <div class="row">
+                <div class="card" id="fileupload">
+                    <h5 class="card-header">File Upload</h5>
+                    <div class="card-body" id="form1">
+                        <div class="mb-3">
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-8" id="formandupload">
+                                        <input class="form-control form-control-sm" id="formFileSm" type="file" id="formFile" name="sentFile"/>
+                                        <div class="invalid-feedback">Choose a file.</div>
+                                    </div>
+                                    <div class="col" id="divupload">
+                                        <input  type="submit" name="subimt" value="Upload" disabled/>
+                                    </div>  
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+
+        {% if img %}    
+            <div class="row">
+                <div class="card" id="imagedisplay">
+                    <h5 class="card-header">Image</h5>
+                    <div class="card-body">
+                        {% if img %}
+                            <img id="imageid" src="{{img}}" width="100" height="100" class="card-img-top embed-responsive-item">
+                        {% else%}
+                            no image
+                        {% endif %}
+                    
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="card" id="result">
+                    <h5 class="card-header">Results</h5>
+                        <div>
+                          <canvas id="myChart"></canvas>
+                        </div>
+                        <div id="resulttext">
+                            The Probability of being HSIL : {{hs}} % <br>
+                            The Probability of being LSIL : {{ls}} % <br>
+                            The Probability of being NILM : {{nl}} % <br>
+                            The Probability of being ASCUS : {{as}} % <br>
+                            {% if hs > 90 %}
+                                <div id="hsiltext">
+                                    High probability of developing cancer<br>
+                                </div>   
+                            {% elif as > 90 %}
+                                <div id="lsiltext">
+                                    Low probality of developing cancer<br>
+                                </div>
+                            {% elif as > 90 %}
+                                <div id="ascustext">
+                                    Might not be cancer<br>
+                                </div>
+                            {% elif nl > 90 %}
+                                <div id="nilmtext">
+                                    No cancer<br>
+                                </div>
+                            {% else %}
+                                Sorry I'm unable to predict<br>
+                            {% endif %}
+                        </div>
+                    <script>
+                        var ctx = document.getElementById("myChart").getContext('2d');
+                        var myChart = new Chart(ctx, {
+                        type: 'doughnut',
+                        data: {
+                            labels: ["HSIL", "LSIL", "ASCUS", "NILM"    ],
+                            datasets: [{
+                            backgroundColor: [
+                                "#d50000",
+                                "#ff3d00",
+                                "#ffff00",
+                                "#00e676" 
+                            ],
+                            data: [{{hs}}, {{ls}}, {{as}}, {{nl}}]
+                            }]
+                        },
+                        options: {
+                            legend: {
+                                labels: {
+                                    // position: 'bottom',
+                                    fontColor: "white",
+                                    fontSize: 15,
+                                    fontStyle: 'bold'
+                                     
+                                    
+                                }
+                            }
+                        }
+                        });
+                    </script>
+                    
+                </div>
+            </div>
+
+        {% else %}
+
+        
+
+       
+        
+        {% endif %}
+            </div>
+
+
+            <style>
+                body{
+                background-image: url("https://source.unsplash.com/aiuCuOcNG4I");
+                background-repeat: no-repeat;
+                background-size: cover;
+                }      
+                .card  {
+                background: rgba( 255, 255, 255, 0.10 );
+                box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+                backdrop-filter: blur( 3.0px );
+                -webkit-backdrop-filter: blur( 3.0px );
+                border-radius: 10px;
+                border: 1px solid rgba( 255, 255, 255, 0.18 );
+                width: 450px;  
+                align-content: center;
+                padding: 0;
+                -webkit-border-radius: 4px;
+                -moz-border-radius: 4px;
+                border-radius: 4px;
+                margin: 20px auto 20px auto;
+                }
+                .card-body{
+                    margin: auto auto 0px;
+                }
+                .card-img-top {
+                width: 100%;
+                height: 40vh;
+                object-fit: cover;
+                }
+                .container {
+                width: 80%;
+                margin: 15px auto;
+                }
+                .navbar {
+                    background: rgba(241, 6, 6, 0.445);
+                    box-shadow: 0 20px 50px 0 rgba(17, 0, 7, 0.37);
+                    backdrop-filter: blur( 6.0px );
+                    height: 45px;
+                    padding: 0.5px;
+                }
+
+                #title {
+                    margin: 3.5px auto auto auto;
+                }
+                
+                #form1{
+                    margin: 15px auto auto 
+                }
+                #formandupload{
+                    margin: auto auto auto 18px;
+                }
+                #divupload{
+                margin: auto 14px;
+                }
+                #result{
+                height: 450px;
+                }
+                #myChart{
+                    margin: 15px auto auto; 
+                }
+                #resulttext{
+                    margin : auto auto auto auto;
+                    color :azure;
+                    text-shadow:1px 1px rgb(60, 255, 0); 
+                }
+                #hsiltext{
+                    color: #d50000;
+                    font-weight: bold;
+                    text-shadow:0px 0px;
+                }
+                #lsiltext{
+                    color: #ff3d00;
+                    font-weight: bold;
+                    text-shadow:0px 0px;
+                }
+                #ascustext{
+                    color: #ffff00;
+                    font-weight: bold;
+                    text-shadow:0px 0px;
+                }
+                #nilmtext{
+                    color: #00e676;
+                    text-shadow:0px 0px;
+                }
+                #logout {
+                    margin: auto 25px auto auto;
+                }
+            </style>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    </body>
+</html>
