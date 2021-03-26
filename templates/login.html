@@ -6,6 +6,32 @@
     function logFun(){
         document.getElementById('load_content').innerHTML='<div class=row id="loginsec"><div class="card" id="login"><h5 class="card-header">Login Here</h5><div class="card-body" id="login"><form action="{% url "multiclass:validate" %}" method="POST">{% csrf_token %}<div class="form-group" id="test"><input type="text" class="form-control" placeholder="Enter Username" name="u_name"></div><div class="form-group"><input type="password" class="form-control" placeholder="Enter Password" name="pass"></div><div class="form-group" id="logbut"><input type="submit" value="Login" class="btn btn-outline-dark"></div></form></div></div></div>'
     }    
+
+    
+    function alrt() {
+        var wrongemail = "{{wrongemail}}";
+        var wrongpass = "{{wrongpass}}";
+
+        var n = wrongemail.length
+        var m = wrongpass.length
+
+        if (n !== 0) {
+
+            alert(wrongemail);
+
+        }
+        else if ( m !== 0 ) {
+            alert(wrongpass);
+        }
+
+        else {
+            
+        }
+        
+
+    }
+                
+        
     </script>
 
 </head>
@@ -30,7 +56,16 @@
     <div class="container-fluid">
     <span id="load_content">
         <div class=row id="beforelogin">
-            {{wrongpass}}{{wrongemail}}
+
+            <!-- {{wrongemail}}
+            {{wrongpass}} -->
+
+
+        <script tyepe="text/javascript">
+            alrt();
+        </script> 
+            
+
             <div class="col">
                 <div class="card h-100">
                     <h5 class="card-header">
@@ -78,7 +113,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <div class="span6" style="float: none; margin: 20px auto;"></div>
+                <div class="d-flex justify-content-center" style="margin: 20px auto auto auto;">
             
                     <video width="320" height="240" controls>
                         <source src="movie.mp4" type="video/mp4">
@@ -152,11 +187,11 @@
                     backdrop-filter: blur( 6.0px );
                     height: 45px;
                     padding: 0.5px;
-                }
+    }
 
-                #title {
-                    margin: 3.5px auto auto auto;
-                }
+    #title {
+        margin: 3.5px auto auto auto;
+    }
 
     #logbut {
         text-align: center;

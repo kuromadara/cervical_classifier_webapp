@@ -38,6 +38,7 @@
             </div>
             
             
+            
 
             <div id="logout">
                 <a href="{% url 'multiclass:logout' %}">
@@ -45,31 +46,12 @@
                 </a>
             </div>
 
+            
+
         </nav>
 
         <div class="background-image"></div>
-        <div class="row">
-            <div class="col">
-                <div class="card" id="fileupload">
-                    <h5 class="card-header">File Upload</h5>
-                    <div class="card-body" id="form1">
-                        <div class="mb-3">
-                            <form method="post" enctype="multipart/form-data">
-                                {% csrf_token %}
-                                <div class="row">
-                                    <div class="col-8" id="formandupload">
-                                        <input class="form-control form-control-sm" id="formFileSm" type="file" id="formFile" name="sentFile"/>
-                                        <div class="invalid-feedback">Choose a file.</div>
-                                    </div>
-                                    <div class="col" id="divupload">
-                                        <input  type="submit" name="subimt" value="Upload" disabled/>
-                                    </div>  
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div> 
+        
 
         {% if img %}  
             <div class="row">
@@ -161,17 +143,63 @@
                     </div>
                 </div>
             </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="d-flex justify-content-end" style="margin: 50px auto auto auto;">
+                    <a href="{% url 'multiclass:home' %}">
+                        <button class='btn btn-outline-dark btn-sm'>Reload</button>
+                    </a>
+                </div>
+
+
+            </div>
+            
+            <div class="col">
+
+                <div class="d-flex justify-content-start" style="margin: 50px auto auto auto;">
+                    
+                        <button class='btn btn-outline-dark btn-sm' onclick="window.print()">Print </button>
+                    
+                </div>
+
+            </div>
+            
+                
+        </div>
+            
             
             
 
         {% else %}
 
-        
-
+        <div class="row">
+            <div class="col">
+                <div class="card" id="fileupload">
+                    <h5 class="card-header">File Upload</h5>
+                    <div class="card-body" id="form1">
+                        <div class="mb-3">
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-8" id="formandupload">
+                                        <input class="form-control form-control-sm" id="formFileSm" type="file" id="formFile" name="sentFile"/>
+                                        <div class="invalid-feedback">Choose a file.</div>
+                                    </div>
+                                    <div class="col" id="divupload">
+                                        <input  type="submit" name="subimt" value="Upload" disabled/>
+                                    </div>  
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            
        
         
         {% endif %}
-            </div>
+
 
 
             <style>
@@ -260,6 +288,10 @@
                 }
                 #logout {
                     margin: auto 25px auto auto;
+                }
+
+                #reload {
+                    margin: auto auto auto auto;
                 }
             </style>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
