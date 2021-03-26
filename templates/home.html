@@ -48,8 +48,8 @@
         </nav>
 
         <div class="background-image"></div>
-        <div class="main">
-            <div class="row">
+        <div class="row">
+            <div class="col">
                 <div class="card" id="fileupload">
                     <h5 class="card-header">File Upload</h5>
                     <div class="card-body" id="form1">
@@ -71,85 +71,98 @@
                 </div>
             </div> 
 
-        {% if img %}    
+        {% if img %}  
             <div class="row">
-                <div class="card" id="imagedisplay">
-                    <h5 class="card-header">Image</h5>
+                <div class="col">
+                    <div class="card h-100" id="imagedisplay">
+                        <h5 class="card-header">Image</h5>
+                        <div class="card-body">
+                            {% if img %}
+                                <img id="imageid" src="{{img}}" width="100" height="100" class="card-img-top embed-responsive-item">
+                            {% else%}
+                                no image
+                            {% endif %}
+                        
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col">
+                    <div class="card h-100" id="result">
+                        <h5 class="card-header">Results</h5>
+                            <div>
+                              <canvas id="myChart"></canvas>
+                            </div>
+                            <div id="resulttext">
+                                The Probability of being HSIL : {{hs}} % <br>
+                                The Probability of being LSIL : {{ls}} % <br>
+                                The Probability of being NILM : {{nl}} % <br>
+                                The Probability of being ASCUS : {{as}} % <br>
+                                <!-- {% if hs > 90 %}
+                                    <div id="hsiltext">
+                                        High probability of developing cancer<br>
+                                    </div>   
+                                {% elif as > 90 %}
+                                    <div id="lsiltext">
+                                        Low probality of developing cancer<br>
+                                    </div>
+                                {% elif as > 90 %}
+                                    <div id="ascustext">
+                                        Might not be cancer<br>
+                                    </div>
+                                {% elif nl > 90 %}
+                                    <div id="nilmtext">
+                                        No cancer<br>
+                                    </div>
+                                {% else %}
+                                    Sorry I'm unable to predict<br>
+                                {% endif %} -->
+                            </div>
+                        <script>
+                            var ctx = document.getElementById("myChart").getContext('2d');
+                            var myChart = new Chart(ctx, {
+                            type: 'doughnut',
+                            data: {
+                                labels: ["HSIL", "LSIL", "ASCUS", "NILM"    ],
+                                datasets: [{
+                                backgroundColor: [
+                                    "#d50000",
+                                    "#ff3d00",
+                                    "#ffff00",
+                                    "#00e676" 
+                                ],
+                                data: [{{hs}}, {{ls}}, {{as}}, {{nl}}]
+                                }]
+                            },
+                            options: {
+                                legend: {
+                                    labels: {
+                                        // position: 'bottom',
+                                        fontColor: "white",
+                                        fontSize: 15,
+                                        fontStyle: 'bold'
+                                         
+                                        
+                                    }
+                                }
+                            }
+                            });
+                        </script>
+                        
+                    </div>
+            </div>
+            <div class=col>
+                <div class="card h-100">
+                    <h5 class="card-header">
+                        Report
+                    </h5>
                     <div class="card-body">
-                        {% if img %}
-                            <img id="imageid" src="{{img}}" width="100" height="100" class="card-img-top embed-responsive-item">
-                        {% else%}
-                            no image
-                        {% endif %}
-                    
+
                     </div>
                 </div>
             </div>
-
-            <div class="row">
-                <div class="card" id="result">
-                    <h5 class="card-header">Results</h5>
-                        <div>
-                          <canvas id="myChart"></canvas>
-                        </div>
-                        <div id="resulttext">
-                            The Probability of being HSIL : {{hs}} % <br>
-                            The Probability of being LSIL : {{ls}} % <br>
-                            The Probability of being NILM : {{nl}} % <br>
-                            The Probability of being ASCUS : {{as}} % <br>
-                            {% if hs > 90 %}
-                                <div id="hsiltext">
-                                    High probability of developing cancer<br>
-                                </div>   
-                            {% elif as > 90 %}
-                                <div id="lsiltext">
-                                    Low probality of developing cancer<br>
-                                </div>
-                            {% elif as > 90 %}
-                                <div id="ascustext">
-                                    Might not be cancer<br>
-                                </div>
-                            {% elif nl > 90 %}
-                                <div id="nilmtext">
-                                    No cancer<br>
-                                </div>
-                            {% else %}
-                                Sorry I'm unable to predict<br>
-                            {% endif %}
-                        </div>
-                    <script>
-                        var ctx = document.getElementById("myChart").getContext('2d');
-                        var myChart = new Chart(ctx, {
-                        type: 'doughnut',
-                        data: {
-                            labels: ["HSIL", "LSIL", "ASCUS", "NILM"    ],
-                            datasets: [{
-                            backgroundColor: [
-                                "#d50000",
-                                "#ff3d00",
-                                "#ffff00",
-                                "#00e676" 
-                            ],
-                            data: [{{hs}}, {{ls}}, {{as}}, {{nl}}]
-                            }]
-                        },
-                        options: {
-                            legend: {
-                                labels: {
-                                    // position: 'bottom',
-                                    fontColor: "white",
-                                    fontSize: 15,
-                                    fontStyle: 'bold'
-                                     
-                                    
-                                }
-                            }
-                        }
-                        });
-                    </script>
-                    
-                </div>
-            </div>
+            
+            
 
         {% else %}
 
