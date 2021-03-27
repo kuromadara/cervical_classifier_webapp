@@ -3,34 +3,36 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
     <script type='text/javascript'>
-    function logFun(){
-        document.getElementById('load_content').innerHTML='<div class=row id="loginsec"><div class="card" id="login"><h5 class="card-header">Login Here</h5><div class="card-body" id="login"><form action="{% url "multiclass:validate" %}" method="POST">{% csrf_token %}<div class="form-group" id="test"><input type="text" class="form-control" placeholder="Enter Username" name="u_name"></div><div class="form-group"><input type="password" class="form-control" placeholder="Enter Password" name="pass"></div><div class="form-group" id="logbut"><input type="submit" value="Login" class="btn btn-outline-dark"></div></form></div></div></div>'
-    }    
+        function logFun(){
+            document.getElementById('load_content').innerHTML='<div class=row id="loginsec"><div class="card" id="login"><h5 class="card-header">Login Here</h5><div class="card-body" id="login"><form action="{% url "multiclass:validate" %}" method="POST">{% csrf_token %}<div class="form-group" id="test"><input type="text" class="form-control" placeholder="Enter Username" name="u_name"></div><div class="form-group"><input type="password" class="form-control" placeholder="Enter Password" name="pass"></div><div class="form-group" id="logbut"><input type="submit" value="Login" class="btn btn-outline-dark"></div></form></div></div></div>'
+        }    
 
-    
-    function alrt() {
-        var wrongemail = "{{wrongemail}}";
-        var wrongpass = "{{wrongpass}}";
-
-        var n = wrongemail.length
-        var m = wrongpass.length
-
-        if (n !== 0) {
-
-            alert(wrongemail);
-
-        }
-        else if ( m !== 0 ) {
-            alert(wrongpass);
-        }
-
-        else {
-            
-        }
         
+        function alrt() {
+            var wrongemail = "{{wrongemail}}";
+            var wrongpass = "{{wrongpass}}";
 
-    }
+            var n = wrongemail.length
+            var m = wrongpass.length
+
+            if (n !== 0) {
+
+                alert(wrongemail);
+                // logFun();
+
+            }
+            else if ( m !== 0 ) {
+                alert(wrongpass);
+                // logFun();
+            }
+
+            else {
                 
+            }
+            
+
+        }
+                    
         
     </script>
 
@@ -40,7 +42,7 @@
     <nav class="navbar navbar-custom">
 
         <div id="navtext" style="margin: auto auto auto 25px;">
-            <img src="https://www.flaticon.com/svg/vstatic/svg/4193/4193454.svg?token=exp=1616399308~hmac=876fa9534b1b8c1983e5f0f41deb7b39" width="30" height="30" class="d-inline-block align-top">
+            <img src="../static/media/icons/cell.svg" width="30" height="30" class="d-inline-block align-top">
             
             <h5 class="d-inline-block align-top" id="title">Cervical Classifier</h5>
         
@@ -57,13 +59,10 @@
     <span id="load_content">
         <div class=row id="beforelogin">
 
-            <!-- {{wrongemail}}
-            {{wrongpass}} -->
 
-
-        <script tyepe="text/javascript">
-            alrt();
-        </script> 
+            <script tyepe="text/javascript">
+                alrt();
+            </script> 
             
 
             <div class="col">
@@ -112,23 +111,27 @@
             </div>
         </div>
         <div class="row">
-            <div class="col">
-                <div class="d-flex justify-content-center" style="margin: 20px auto auto auto;">
             
-                    <video width="320" height="240" controls>
-                        <source src="movie.mp4" type="video/mp4">
-                        <source src="movie.ogg" type="video/ogg">
-                      Your browser does not support the video tag.
-                      </video>
-                
-                </div>
+            <div class="card" id="aboutsoft">
+                <h5 class="card-header">About The Software</h5>
+                <div class="card-body">
+                  
+                  <div class="col-xs-6" id="aboutsoftimg">
+                    <img src="../static/media/images/image002.jpg"style="height:200px; width:450px">
+                  </div>
+                  <div class="col-xs-6" id="aboutsofttxt">
+                    <p class="card-text">LBC Pap Scanner, is built in advanced artificial intelligence technology to detect cervical cancer. LBC Pap Scanner analyses pap smear samples to call out Normal or Abnormal as well as Normal or Abnormal sub-classes within a short span of time.</p>
 
+                  </div>
+                  
+                  
+                </div>
             </div>
             
 
-            
-
         </div>
+            
+        
         <div class="row">
             <div class="col">
                 
@@ -142,13 +145,13 @@
             
         </div>
     </span>
-    </div>
+</div>
 <style>
     body{
-                background-image: url("https://source.unsplash.com/Hzkp3JPUxVY");
-                background-repeat: no-repeat;
-                background-size: cover;
-                }  
+        background-image: url("https://source.unsplash.com/Hzkp3JPUxVY");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }  
     .row {
         margin-top : 20px;
     }
@@ -158,35 +161,38 @@
     }
 
     .card  {
-                background: rgba( 255, 255, 255, 0.10 );
-                box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-                backdrop-filter: blur( 3.0px );
-                -webkit-backdrop-filter: blur( 3.0px );
-                border-radius: 10px;
-                border: 1px solid rgba( 255, 255, 255, 0.18 );
-                width: 450px;  
-                /* align-content: center; */
-                padding: 0;
-                -webkit-border-radius: 4px;
-                -moz-border-radius: 4px;
-                border-radius: 4px;
-                margin: 10px auto auto auto;
-        }
+        background: rgba( 255, 255, 255, 0.10 );
+        box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+        backdrop-filter: blur( 3.0px );
+        -webkit-backdrop-filter: blur( 3.0px );
+        border-radius: 10px;
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
+        width: 450px;  
+        /* align-content: center; */
+        padding: 0;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        margin: 10px auto auto auto;
+    }
         
     .card-body{
-                    margin: auto auto 0px;
-                }
+        margin: auto auto 0px;
+    }
+    .card-text{
+        text-align: center;
+    }
 
     .form-group {
         padding: 5px;
     }
 
     .navbar {
-                    background: rgba(189, 173, 173, 0.445);
-                    box-shadow: 0 20px 50px 0 rgba(17, 0, 7, 0.37);
-                    backdrop-filter: blur( 6.0px );
-                    height: 45px;
-                    padding: 0.5px;
+        background: rgba(189, 173, 173, 0.445);
+        box-shadow: 0 20px 50px 0 rgba(17, 0, 7, 0.37);
+        backdrop-filter: blur( 6.0px );
+        height: 45px;
+        padding: 0.5px;
     }
 
     #title {
@@ -206,8 +212,16 @@
         
     }
     #logbutnav {
-                    margin: auto 25px auto auto;
-                }
+        margin: auto 25px auto auto;
+    }
+    #aboutsoft {
+        width: 1475px;
+       
+    }
+    #aboutsoftimg{
+        float: left;
+    }
+    
 </style>
 </body>
 </html>
