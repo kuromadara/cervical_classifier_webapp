@@ -18,12 +18,12 @@
             if (n !== 0) {
 
                 alert(wrongemail);
-                // logFun();
+                logFun();
 
             }
             else if ( m !== 0 ) {
                 alert(wrongpass);
-                // logFun();
+                logFun();
             }
 
             else {
@@ -44,108 +44,89 @@
         <div id="navtext" style="margin: auto auto auto 25px;">
             <img src="../static/media/icons/cell.svg" width="30" height="30" class="d-inline-block align-top">
             
-            <h5 class="d-inline-block align-top" id="title">Cervical Classifier</h5>
-        
+            <h5 class="d-inline-block align-top" id="title">Cervical Classifier</h5>       
         </div>
         
-        
-
         <div id="logbutnav">
             <button class='btn btn-outline-dark btn-sm' onclick="logFun()">Login</button>
         </div>
 
     </nav>
+
     <div class="container-fluid">
-    <span id="load_content">
-        <div class=row id="beforelogin">
-
-
-            <script tyepe="text/javascript">
-                alrt();
-            </script> 
+        <span id="load_content">
+            <div id="beforelogin">
+            <div class=row>
+                <script tyepe="text/javascript">
+                    alrt();
+                </script> 
             
 
-            <div class="col">
-                <div class="card h-100">
-                    <h5 class="card-header">
-                        Cervical Cancer
-                    </h5>
-                        <div class="card-body">
-                            •	   Cervical cancer is a type of cancer that occurs in the cells of the cervix — the lower part of the uterus. <br>
-                            •	 Long-lasting infection with certain types of human papillomavirus (HPV) is the main cause of cervical cancer in majority of cases.<br>
-                            •	 Cervical cancer is curable if detected at an early stage.
-
-
-
-                        </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <h5 class="card-header">Cervical Cancer</h5>
+                            <div class="card-body">
+                                •	   Cervical cancer is a type of cancer that occurs in the cells of the cervix — the lower part of the uterus. <br>
+                                •	 Long-lasting infection with certain types of human papillomavirus (HPV) is the main cause of cervical cancer in majority of cases.<br>
+                                •	 Cervical cancer is curable if detected at an early stage.
+                            </div>
+                    </div>
                 </div>
 
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <h5 class="card-header">
-                        Pap Smear
-                    </h5>
-                        <div class="card-body">
-                            During a Pap test, your doctor scrapes and brushes cells from your cervix, which are then examined in a lab for abnormalities.<br>
-                            A Pap test can detect abnormal cells in the cervix, including cancer cells and cells that show changes that increase the risk of cervical cancer.
+                <div class="col">
+                    <div class="card h-100">
+                        <h5 class="card-header">Pap Smear</h5>
+                            <div class="card-body">
+                                During a Pap test, your doctor scrapes and brushes cells from your cervix, which are then examined in a lab for abnormalities.<br>
+                                A Pap test can detect abnormal cells in the cervix, including cancer cells and cells that show changes that increase the risk of cervical cancer.
 
                             
-                        </div>
+                            </div>
+                    </div>
                 </div>
-                
+
+                <div class="col">
+                    <div class="card h-100">
+                        <h5 class="card-header">LBC</h5>
+                            <div class="card-body">
+                                •	The sample collection and technique for the preparation of the slides differ slightly for both the methods. <br>
+                                •	Conventional Pap test involves taking the sample from the vagina with the help of a brush or spatula and then preparing and staining the smear on a glass slide with hematoxylin and eosin.<br>
+                                •	In the LBC method, the slides are prepared by a kit. It involves more steps such keeping the samples in a container having some additive fluids to break the debris. Finally, staining using hematoxylin and eosin after which a uniform slide is obtained.<br>
+                            </div>
+                    </div>
+                </div>
             </div>
-            <div class="col">
-                <div class="card h-100">
-                    <h5 class="card-header">
-                        LBC
-                    </h5>
+
+            <div class="row">
+                <div class="card" id="aboutsoft">
+                    <h5 class="card-header">About The Software</h5>
                         <div class="card-body">
-                            •	The sample collection and technique for the preparation of the slides differ slightly for both the methods. <br>
-                            •	Conventional Pap test involves taking the sample from the vagina with the help of a brush or spatula and then preparing and staining the smear on a glass slide with hematoxylin and eosin.<br>
-                            •	In the LBC method, the slides are prepared by a kit. It involves more steps such keeping the samples in a container having some additive fluids to break the debris. Finally, staining using hematoxylin and eosin after which a uniform slide is obtained.<br>
-
+                            <div class="col" id="aboutsoftimg">
+                                <img src="../static/media/images/image002.jpg"style="height:200px; width:450px">
+                            </div>
+                            <div class="col" id="aboutsofttxt">
+                                <p class="card-text">LBC Pap Scanner, is built in advanced artificial intelligence technology to detect cervical cancer. LBC Pap Scanner analyses pap smear samples to call out Normal or Abnormal as well as Normal or Abnormal sub-classes within a short span of time.</p>
+                            </div>
                         </div>
                 </div>
-                
             </div>
-        </div>
-        <div class="row">
-            
-            <div class="card" id="aboutsoft">
-                <h5 class="card-header">About The Software</h5>
-                <div class="card-body">
-                  
-                  <div class="col-xs-6" id="aboutsoftimg">
-                    <img src="../static/media/images/image002.jpg"style="height:200px; width:450px">
-                  </div>
-                  <div class="col-xs-6" id="aboutsofttxt">
-                    <p class="card-text">LBC Pap Scanner, is built in advanced artificial intelligence technology to detect cervical cancer. LBC Pap Scanner analyses pap smear samples to call out Normal or Abnormal as well as Normal or Abnormal sub-classes within a short span of time.</p>
-
-                  </div>
-                  
-                  
-                </div>
-            </div>
-            
-
-        </div>
             
         
-        <div class="row">
-            <div class="col">
+            <div class="row">
+                <div class="col">
                 
-            </div>
-            <div class="col">
+                </div>
+                <div class="col">
+                   
+                </div>
+                <div class="col">
                 
-            </div>
-            <div class="col">
-                
-            </div>
+                </div>
             
+            </div>
         </div>
-    </span>
-</div>
+        </span>
+    </div>
 <style>
     body{
         background-image: url("https://source.unsplash.com/Hzkp3JPUxVY");
@@ -180,7 +161,7 @@
         margin: auto auto 0px;
     }
     .card-text{
-        text-align: center;
+        /* text-align: center; */
     }
 
     .form-group {
@@ -220,6 +201,9 @@
     }
     #aboutsoftimg{
         float: left;
+    }
+    #aboutsofttxt {
+        margin: auto auto auto 470px;
     }
     
 </style>
