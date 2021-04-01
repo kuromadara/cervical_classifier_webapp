@@ -29,30 +29,21 @@
     <body>
         
         <nav class="navbar navbar-custom">
-
             <div id="navtext" style="margin: auto auto auto 25px;">
-                <img src="../static/media/icons/cell.svg" width="30" height="30" class="d-inline-block align-top">
-                
+                <img src="../static/media/icons/cell.svg" width="30" height="30" class="d-inline-block align-top">               
                 <h5 class="d-inline-block align-top" id="title">Cervical Classifier</h5>
-            
             </div>
             
-            
-            
-
             <div id="logout">
                 <a href="{% url 'multiclass:logout' %}">
                     <button class='btn btn-outline-dark btn-sm'>Logout</button>
                 </a>
             </div>
-
-            
-
+           
         </nav>
 
         <div class="background-image"></div>
         
-
         {% if img %}  
             <div class="row">
                 <div class="col">
@@ -81,6 +72,12 @@
                                 The Probability of being NILM : {{nl}} % <br>
                                 The Probability of being ASCUS : {{as}} % <br>
                             </div>
+                            
+ <!-- I will calculate time for you please uncomment me senpai.                            -->
+                            <!-- <div id="time">
+                                Time taken to make the prediction is {{time}} second.
+                            </div> -->
+                            
                         <script>
                             var ctx = document.getElementById("myChart").getContext('2d');
                             var myChart = new Chart(ctx, {
@@ -122,19 +119,19 @@
                     <div class="card-body">
                         {% if hs > as and hs > ls and hs > nl %}
                             <div id="hsiltext">
-                                I have found High Grade Squamous Intraepithelial Lesion cell. These type of cell abnormalities and has high risk of devloping cancer. Please consult experts as soon as posible for further information.<br>
+                                It has been found High grade squamous intraepithelial lesion. This type of cell abnormalities has high risk of developing cervical cancer. Please consult expert as soon as possible for further information<br>
                             </div>   
                         {% elif ls > hs and ls > as and ls > nl %}
                             <div id="lsiltext">
-                                I have  found Low-grade squamous intraepithelial lesion. These are mild cell abnormalities and could devlop into cancer cell. Please consult an expert for further information.<br>
+                                It has been found Low-grade squamous intraepithelial lesion. These are mild cell abnormalities and could develop into cancer cell. Please consult expert for further information.<br>
                             </div>
                         {% elif as > hs and as > ls and as > nl %}
                             <div id="ascustext">
-                                I have found Atypical Squamous Cells of Undetermined cell abnormalities. These is low risk of devlopeing cancer. Please consult an expert for further information.<br>
+                                It has been found Atypical Squamous Cells of Undetermined cell abnormalities. These is low risk of developing cancer. Please consult an expert for further information.<br>
                             </div>
                         {% elif nl > hs and nl > ls and nl > as %}
                             <div id="nilmtext">
-                                I have found Negative for Intraepithelial Lesion or Malignancy. This means that there are no cancer cells. Please consult an expert for further information.<br>
+                                It has been found Negative for Intraepithelial Lesion or Malignancy. This means that there are no cancer cells. Please consult an expert for further information.<br>
                             </div>
                         {% else %}
                                     Sorry I'm unable to predict<br>
@@ -174,8 +171,26 @@
 
         <div class="row">
             <div class="col">
+                <div class="card" id="manual">
+                    <h5 class="card-header">How to use the software</h5>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <p>
+                                <b>Step 1.</b> Select a file in the box below.<br>
+                                <b>Step 2.</b> Click on Upload.<br>
+                                <b>Step 2.</b> Click on print to print the report.<br>
+                                <b>Step 3.</b> Click on reload to return to this page.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+
+        <div class="row">
+            <div class="col">
                 <div class="card" id="fileupload">
-                    <h5 class="card-header">File Upload</h5>
+                    <h5 class="card-header">Select Image Here</h5>
                     <div class="card-body" id="form1">
                         <div class="mb-3">
                             <form method="post" enctype="multipart/form-data">
@@ -194,7 +209,8 @@
                     </div>
                 </div>
             </div> 
-            
+
+
        
         
         {% endif %}
@@ -292,6 +308,15 @@
                 #reload {
                     margin: auto auto auto auto;
                 }
+                #manual {
+                    margin: 20px auto auto 543px;
+                }
+                #time{
+                    margin : auto auto auto auto;
+                    color :rgb(0, 10, 10);
+                    text-shadow:1px 1px rgb(71, 13, 2); 
+                }
+
             </style>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
     </body>

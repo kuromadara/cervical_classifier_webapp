@@ -17,6 +17,7 @@ from keras.models import load_model
 import base64
 from .models import UserRegistrationForm
 from django.contrib import messages
+import time
 
 model = load_model('static/models/model_old.h5')
 
@@ -76,8 +77,11 @@ def index(request):
     if request.session.get('login') == True:
 
         if request.method == "POST":
+
+            start = time.time()
+
             f = request.FILES.get('sentFile')
-                    
+
             file_name = "static/media/pic.jpg"
             file_name_2 = default_storage.save(file_name,f)
             file_url = default_storage.url(file_name_2)[1:] # /static/media/pic_7f2JcAh.jpg => static/media/pic_7f2JcAh.jpg
@@ -98,6 +102,12 @@ def index(request):
             '''
             prediction = model.predict(pred_img)
 
+            #time.sleep(1)
+
+            end = time.time()
+
+            time_taken = round((end - start), 2)
+
             hsil = round((prediction[0][0] * 100), 2)
             lsil = round((prediction[0][1] * 100), 2)
             nl = round((prediction[0][2] * 100), 2)
@@ -117,7 +127,7 @@ def index(request):
             #             break
             # print('hello',userr)
             context = {
-                # 'userr': userr,
+                'time' : time_taken,
                 'hs':hsil, 
                 'ls':lsil,
                 'nl':nl,
