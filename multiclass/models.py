@@ -17,6 +17,10 @@ class UserManager(models.Manager):
 
         return errors
 
+    # def cur_user(self, postData):
+    #     userr = postData['u_name']
+    #     return userr
+
 class UserRegistrationForm(models.Model):
     username = models.CharField(max_length = 32)
     email = models.CharField(max_length = 32)

@@ -62,8 +62,14 @@ def validate_login(request):
             request.session['err'] = errors
             return redirect('/', context)
         else:
+            # userr = UserRegistrationForm.objects.cur_user(request.POST)
+            # print(userr)
+            # context = {
+            #     'userr' : userr
+            # }
+            # request.session['userrr'] = userr
             request.session['login'] = True
-            return redirect("/home")
+            return redirect("/home") #,context
         
 
 def index(request):
@@ -99,8 +105,19 @@ def index(request):
 
             max = hsil + lsil + nl + ascus
 
+            msg = ''
+            if request.session.get('userrr'):
+                msg = request.session.get('userrr')
+                del request.session['userrr']
 
+            # if (msg != ''):
+            #     for key, value in msg.items():
+            #         if key == 'email':
+            #             userr = value
+            #             break
+            # print('hello',userr)
             context = {
+                # 'userr': userr,
                 'hs':hsil, 
                 'ls':lsil,
                 'nl':nl,

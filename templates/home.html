@@ -31,7 +31,7 @@
         <nav class="navbar navbar-custom">
 
             <div id="navtext" style="margin: auto auto auto 25px;">
-                <img src="https://www.flaticon.com/svg/vstatic/svg/4193/4193454.svg?token=exp=1616399308~hmac=876fa9534b1b8c1983e5f0f41deb7b39" width="30" height="30" class="d-inline-block align-top">
+                <img src="../static/media/icons/cell.svg" width="30" height="30" class="d-inline-block align-top">
                 
                 <h5 class="d-inline-block align-top" id="title">Cervical Classifier</h5>
             
@@ -80,25 +80,6 @@
                                 The Probability of being LSIL : {{ls}} % <br>
                                 The Probability of being NILM : {{nl}} % <br>
                                 The Probability of being ASCUS : {{as}} % <br>
-                                <!-- {% if hs > 90 %}
-                                    <div id="hsiltext">
-                                        High probability of developing cancer<br>
-                                    </div>   
-                                {% elif as > 90 %}
-                                    <div id="lsiltext">
-                                        Low probality of developing cancer<br>
-                                    </div>
-                                {% elif as > 90 %}
-                                    <div id="ascustext">
-                                        Might not be cancer<br>
-                                    </div>
-                                {% elif nl > 90 %}
-                                    <div id="nilmtext">
-                                        No cancer<br>
-                                    </div>
-                                {% else %}
-                                    Sorry I'm unable to predict<br>
-                                {% endif %} -->
                             </div>
                         <script>
                             var ctx = document.getElementById("myChart").getContext('2d');
@@ -120,7 +101,7 @@
                                 legend: {
                                     labels: {
                                         // position: 'bottom',
-                                        fontColor: "white",
+                                        fontColor: "black",
                                         fontSize: 15,
                                         fontStyle: 'bold'
                                          
@@ -139,7 +120,25 @@
                         Report
                     </h5>
                     <div class="card-body">
-
+                        {% if hs > as and hs > ls and hs > nl %}
+                            <div id="hsiltext">
+                                I have found High Grade Squamous Intraepithelial Lesion cell. These type of cell abnormalities and has high risk of devloping cancer. Please consult experts as soon as posible for further information.<br>
+                            </div>   
+                        {% elif ls > hs and ls > as and ls > nl %}
+                            <div id="lsiltext">
+                                I have  found Low-grade squamous intraepithelial lesion. These are mild cell abnormalities and could devlop into cancer cell. Please consult an expert for further information.<br>
+                            </div>
+                        {% elif as > hs and as > ls and as > nl %}
+                            <div id="ascustext">
+                                I have found Atypical Squamous Cells of Undetermined cell abnormalities. These is low risk of devlopeing cancer. Please consult an expert for further information.<br>
+                            </div>
+                        {% elif nl > hs and nl > ls and nl > as %}
+                            <div id="nilmtext">
+                                I have found Negative for Intraepithelial Lesion or Malignancy. This means that there are no cancer cells. Please consult an expert for further information.<br>
+                            </div>
+                        {% else %}
+                                    Sorry I'm unable to predict<br>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -204,7 +203,7 @@
 
             <style>
                 body{
-                background-image: url("https://source.unsplash.com/aiuCuOcNG4I");
+                background-image: url("https://source.unsplash.com/mjC9apK53a8");
                 background-repeat: no-repeat;
                 background-size: cover;
                 }      
@@ -264,22 +263,22 @@
                 }
                 #resulttext{
                     margin : auto auto auto auto;
-                    color :azure;
+                    color :rgb(0, 10, 10);
                     text-shadow:1px 1px rgb(60, 255, 0); 
                 }
                 #hsiltext{
                     color: #d50000;
-                    font-weight: bold;
+                    /* font-weight: bold; */
                     text-shadow:0px 0px;
                 }
                 #lsiltext{
                     color: #ff3d00;
-                    font-weight: bold;
+                    /* font-weight: bold; */
                     text-shadow:0px 0px;
                 }
                 #ascustext{
                     color: #ffff00;
-                    font-weight: bold;
+                    /* font-weight: bold; */
                     text-shadow:0px 0px;
                 }
                 #nilmtext{
