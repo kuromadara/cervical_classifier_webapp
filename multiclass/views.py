@@ -115,10 +115,10 @@ def index(request):
 
             max = hsil + lsil + nl + ascus
 
-            msg = ''
-            if request.session.get('userrr'):
-                msg = request.session.get('userrr')
-                del request.session['userrr']
+            # msg = ''
+            # if request.session.get('userrr'):
+            #     msg = request.session.get('userrr')
+            #     del request.session['userrr']
 
             # if (msg != ''):
             #     for key, value in msg.items():

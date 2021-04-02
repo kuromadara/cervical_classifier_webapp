@@ -1,5 +1,9 @@
 <html>
 <head>
+
+    <title>Cervical Classifier</title>
+    <link rel="shortcut icon" type="image/png" href="../static/media/icons/cell.svg"/>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
     <script type='text/javascript'>
@@ -43,7 +47,7 @@
     <nav class="navbar navbar-custom">
 
         <div id="navtext" style="margin: auto auto auto 25px;">
-            <img src="../static/media/icons/cell.svg" width="30" height="30" class="d-inline-block align-top">
+            <img src="../static/media/icons/cancer.svg" width="30" height="30" class="d-inline-block align-top">
             
             <h5 class="d-inline-block align-top" id="title">Cervical Classifier</h5>       
         </div>
@@ -98,7 +102,7 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row" id="soft">
                 <div class="card" id="aboutsoft">
                     <h5 class="card-header">About The Software</h5>
                         <div class="card-body">
@@ -110,6 +114,7 @@
                                     <p class="card-text">LBC Pap Scanner, is built in advanced artificial intelligence technology to detect cervical cancer. LBC Pap Scanner analyses pap smear samples to call out Normal or Abnormal as well as Normal or Abnormal sub-classes within a short span of time.</p>
                                 </div>
                             </div>
+                        
                             <div id="features">
                                 <div class="row">
                                     <img src="../static/media/icons/image003.png"style="height:50px; width:100px;">
@@ -135,6 +140,7 @@
         background-image: url("https://source.unsplash.com/mjC9apK53a8");
         background-repeat: no-repeat;
         background-size: cover;
+        box-sizing: border-box;
     }  
     .row {
         margin-top : 20px;
@@ -212,7 +218,9 @@
     #features {
         margin: 20px auto auto 300px;
     }
-    
+    #soft {
+        margin : 30px 15px 55px 15px; 
+    }
 </style>
 </body>
 </html>
