@@ -2,7 +2,7 @@ django==3.1.7
 gunicorn
 django-heroku
 keras==2.4.3
-tensorflow==2.3.0
+tensorflow-cpu==2.3.0
 opencv-python==3.4.2.17
 numpy==1.16.6
 Pillow==8.1.2
