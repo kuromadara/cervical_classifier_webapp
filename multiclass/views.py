@@ -79,7 +79,7 @@ def index(request):
         if request.method == "POST":
 
             start = time.time()
-
+            
             f = request.FILES.get('sentFile')
 
             file_name = "static/media/pic.jpg"
@@ -90,8 +90,15 @@ def index(request):
             img_resize = (cv2.resize(image_org, dsize=(224, 224),interpolation=cv2.INTER_LINEAR))/255.
             pred_img = img_resize[np.newaxis,...]
 
+            r, enc = cv2.imencode('.jpg', image_org)
+            encoded = base64.b64encode(enc).decode('ascii')
+            mime = "image/jpg"
+            mime = mime + ";" if mime else ";"
+            input_image = "data:%sbase64,%s" % (mime, encoded)   
 
             '''
+            batch images
+
             image_org = load_img(("." + file_url), target_size=(224,224))
 
             img_array = np.asarray(image_org)
@@ -100,6 +107,7 @@ def index(request):
             img_pre = preprocess_input(img_array)
             img_exp = np.expand_dims(img_pre, axis=0)
             '''
+
             prediction = model.predict(pred_img)
 
             #time.sleep(1)
@@ -126,13 +134,16 @@ def index(request):
             #             userr = value
             #             break
             # print('hello',userr)
-            context = {
+
+            # img : file_url for file
+            
+            context = { 
                 'time' : time_taken,
                 'hs':hsil, 
                 'ls':lsil,
                 'nl':nl,
                 'as':ascus, 
-                'img':file_url,
+                'img': input_image,
                 'max':max
                 }
 
