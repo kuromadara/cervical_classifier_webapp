@@ -19,7 +19,7 @@ from .models import UserRegistrationForm
 from django.contrib import messages
 import time
 
-model = load_model('static/models/model_old.h5')
+model = load_model('static/models/model_sgd.h5')
 
 def login(request):
     msg = ''
