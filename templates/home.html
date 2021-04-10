@@ -1,5 +1,8 @@
 <html>
     <head>
+
+        <meta name="viewport" content="width=device-width. initial-scale=1.0">
+
         <title>Cervical Classifier</title>
         <link rel="shortcut icon" type="image/png" href="https://raw.githubusercontent.com/kuromadara/filehost/main/media/icons/cell.svg"/>
 
@@ -145,7 +148,7 @@
 
         <div class="row">
             <div class="col">
-                <div class="d-flex justify-content-end" style="margin: 50px auto auto auto;">
+                <div class="d-flex justify-content-end">
                     <a href="{% url 'multiclass:home' %}">
                         <button class='btn btn-outline-dark btn-sm'>Reload</button>
                     </a>
@@ -156,7 +159,7 @@
             
             <div class="col">
 
-                <div class="d-flex justify-content-start" style="margin: 50px auto auto auto;">
+                <div class="d-flex justify-content-start">
                     
                         <button class='btn btn-outline-dark btn-sm' onclick="window.print()">Print </button>
                     
@@ -225,7 +228,10 @@
                 background-image: url("https://source.unsplash.com/mjC9apK53a8");
                 background-repeat: no-repeat;
                 background-size: cover;
-                }      
+                }  
+                .col {
+                    margin: 20px auto;
+                }    
                 .card  {
                 background: rgba( 255, 255, 255, 0.10 );
                 box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
@@ -239,7 +245,7 @@
                 -webkit-border-radius: 4px;
                 -moz-border-radius: 4px;
                 border-radius: 4px;
-                margin: 20px auto 20px auto;
+                margin: auto auto auto auto;
                 }
                 .card-body{
                     margin: auto auto 0px;
@@ -308,18 +314,28 @@
                     margin: auto 25px auto auto;
                 }
 
-                #reload {
+                /* #reload {
                     margin: auto auto auto auto;
-                }
-                #manual {
-                    margin: 20px auto auto 543px;
-                }
+                } */
+
                 #time{
                     margin : auto auto auto auto;
                     color :rgb(0, 10, 10);
                     text-shadow:1px 1px rgb(71, 13, 2); 
                 }
 
+                @media  and (nax-width: 500px) {
+                    .container-fluid,
+                    .row,
+                    .col,
+                    .card,
+                    .card-body,
+                    .card-text,
+                    #manual {
+                        width: 70%
+                    }
+
+                }
             </style>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
     </body>
