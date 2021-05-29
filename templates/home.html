@@ -14,6 +14,73 @@
         <script src="/assets/vendor/chart.js/dist/Chart.min.js"></script>
         <script src="/assets/vendor/chart.js/dist/Chart.extension.js"></script>
         <script type="text/javascript">
+        function chart_binary(){
+                var ctx = document.getElementById("myChart").getContext("2d");
+                var myChart = new Chart(ctx, {
+                type: "doughnut",
+                data: {
+                    labels: ["Normal", "Abnormal"   ],
+                    datasets: [{
+                    backgroundColor: [
+                        "#d50000",
+                        "#00e676" 
+                    ],
+                    data: [{{normal}}, {{abnormal}}]
+                    }]
+                },
+                options: {
+                    legend: {
+                        labels: {
+                            fontColor: "black",
+                            fontSize: 15,
+                            fontStyle: "bold"
+                                
+                            
+                        }
+                    }
+                }
+                });
+
+            }
+
+            function binary(){
+                document.getElementById('load_content').innerHTML='<div class="row"><div class="col"><div class="card h-100" id="imagedisplay"><h5 class="card-header">Image</h5><div class="card-body">{% if img %}<img id="imageid" src="{{img}}" width="100" height="100" class="card-img-top embed-responsive-item">{% else%}no image{% endif %}</div></div></div><div class="col"><div class="card h-100" id="result"><h5 class="card-header">Results</h5><div><canvas id="myChart"></canvas></div><div id="resulttext">The Probability of being Normal : {{normal}} % <br>The Probability of being Abnormal : {{abnormal}} % <br></div><div id="time">Time taken to make the prediction is {{time}} second.</div><img src="1" alt="" onerror="chart_binary()"></div></div><div class="col"><div class="card h-100"><h5 class="card-header"> Report</h5><div class="card-body">{% if abnormal > normal %}<div id="hsiltext">It has been found Abnormalities in cell. This type of cell abnormalities has high risk of developing cervical cancer. Please consult expert as soon as possible for further information<br></div>   {% elif normal > abnormal %}<div id="nilmtext">It has been found Negative for Intraepithelial Lesion or Malignancy. This means that there are no cancer cells. Please consult an expert for further information.<br></div>{% else %}Sorry Im unable to predict<br>{% endif %}</div></div></div></div><div class="row"><div class="col"><div class="d-flex justify-content-end"><a href="{% url "multiclass:home" %}"><button class="btn btn-outline-dark btn-sm">Reload</button></a></div></div><div class="col"><div class="d-flex justify-content-start"><button class="btn btn-outline-dark btn-sm" onclick="window.print()">Print </button> </div></div>       </div>'
+            } 
+            
+            function chart(){
+                            var ctx = document.getElementById("myChart").getContext("2d");
+                            var myChart = new Chart(ctx, {
+                            type: "doughnut",
+                            data: {
+                                labels: ["HSIL", "LSIL", "ASCUS", "NILM"    ],
+                                datasets: [{
+                                backgroundColor: [
+                                    "#d50000",
+                                    "#003cff",
+                                    "#ffff00",
+                                    "#00e676" 
+                                ],
+                                data: [{{hs}}, {{ls}}, {{as}}, {{nl}}]
+                                }]
+                            },
+                            options: {
+                                legend: {
+                                    labels: {
+                                        fontColor: "black",
+                                        fontSize: 15,
+                                        fontStyle: "bold"
+                                         
+                                        
+                                    }
+                                }
+                            }
+                            });
+
+            }
+            
+            function multiclass(){
+                document.getElementById('load_content').innerHTML='<div class="row"><div class="col"><div class="card h-100" id="imagedisplay"><h5 class="card-header">Image</h5><div class="card-body">{% if img %}<img id="imageid" src="{{img}}" width="100" height="100" class="card-img-top embed-responsive-item">{% else%}no image{% endif %}</div></div></div><div class="col"><div class="card h-100" id="result"><h5 class="card-header">Results</h5><div><canvas id="myChart"></canvas></div><div id="resulttext">The Probability of being HSIL : {{hs}} % <br>The Probability of being LSIL : {{ls}} % <br>The Probability of being NILM : {{nl}} % <br>The Probability of being ASCUS : {{as}} % <br></div><div id="time">Time taken to make the prediction is {{time}} second.</div><img src="1" alt="" onerror="chart()"></div></div><div class="col"><div class="card h-100"><h5 class="card-header">Report</h5><div class="card-body">{% if hs > as and hs > ls and hs > nl %}<div id="hsiltext">It has been found High grade squamous intraepithelial lesion. This type of cell abnormalities has high risk of developing cervical cancer. Please consult expert as soon as possible for further information<br></div>   {% elif ls > hs and ls > as and ls > nl %}<div id="lsiltext">It has been found Low-grade squamous intraepithelial lesion. These are mild cell abnormalities and could develop into cancer cell. Please consult expert for further information.<br></div>{% elif as > hs and as > ls and as > nl %}<div id="ascustext">It has been found Atypical Squamous Cells of Undetermined cell abnormalities. These is low risk of developing cancer. Please consult an expert for further information.<br></div>{% elif nl > hs and nl > ls and nl > as %}<div id="nilmtext">It has been found Negative for Intraepithelial Lesion or Malignancy. This means that there are no cancer cells. Please consult an expert for further information.<br></div>{% else %}Sorry Im unable to predict<br>{% endif %}</div></div></div></div><div class="row"><div class="col"><div class="d-flex justify-content-end"><a href="{% url "multiclass:home" %}"><button class="btn btn-outline-dark btn-sm">Reload</button></a></div></div><div class="col"><div class="d-flex justify-content-start"><button class="btn btn-outline-dark btn-sm" onclick="window.print()">Print </button> </div></div></div>'
+            }  
             $(document).ready(
                 function(){
                     $('input:submit').attr('disabled',true);
@@ -26,8 +93,8 @@
                                 $('input:submit').attr('disabled',true);
                             }
                         });
-                });
-
+                }
+            );
                 
         </script>
     </head>
@@ -48,173 +115,74 @@
            
         </nav>
 
-        <div class="background-image"></div>
+        
         
         {% if img %}  
-            <div class="row">
-                <div class="col">
-                    <div class="card h-100" id="imagedisplay">
-                        <h5 class="card-header">Image</h5>
-                        <div class="card-body">
-                            {% if img %}
-                                <img id="imageid" src="{{img}}" width="100" height="100" class="card-img-top embed-responsive-item">
-                            {% else%}
-                                no image
-                            {% endif %}
-                        
+        <div class="container-fluid">
+            <span id="load_content">
+                <div class="row">
+                    <div class="col">
+                        <div class="d-flex justify-content-end">
+                                <button class='btn btn-outline-dark btn-sm' onclick="binary()">Binary</button>
                         </div>
                     </div>
-                </div>
-    
-                <div class="col">
-                    <div class="card h-100" id="result">
-                        <h5 class="card-header">Results</h5>
-                            <div>
-                              <canvas id="myChart"></canvas>
-                            </div>
-                            <div id="resulttext">
-                                The Probability of being HSIL : {{hs}} % <br>
-                                The Probability of being LSIL : {{ls}} % <br>
-                                The Probability of being NILM : {{nl}} % <br>
-                                The Probability of being ASCUS : {{as}} % <br>
-                            </div>
-
- <!-- I will calculate time for you please uncomment me senpai.                            -->
-                            <!-- <div id="time">
-                                Time taken to make the prediction is {{time}} second.
-                            </div> -->
-                            
-                        <script>
-                            var ctx = document.getElementById("myChart").getContext('2d');
-                            var myChart = new Chart(ctx, {
-                            type: 'doughnut',
-                            data: {
-                                labels: ["HSIL", "LSIL", "ASCUS", "NILM"    ],
-                                datasets: [{
-                                backgroundColor: [
-                                    "#d50000",
-                                    "#003cff",
-                                    "#ffff00",
-                                    "#00e676" 
-                                ],
-                                data: [{{hs}}, {{ls}}, {{as}}, {{nl}}]
-                                }]
-                            },
-                            options: {
-                                legend: {
-                                    labels: {
-                                        // position: 'bottom',
-                                        fontColor: "black",
-                                        fontSize: 15,
-                                        fontStyle: 'bold'
-                                         
-                                        
-                                    }
-                                }
-                            }
-                            });
-                        </script>
-                        
-                    </div>
-            </div>
-            <div class=col>
-                <div class="card h-100">
-                    <h5 class="card-header">
-                        Report
-                    </h5>
-                    <div class="card-body">
-                        {% if hs > as and hs > ls and hs > nl %}
-                            <div id="hsiltext">
-                                It has been found High grade squamous intraepithelial lesion. This type of cell abnormalities has high risk of developing cervical cancer. Please consult expert as soon as possible for further information<br>
-                            </div>   
-                        {% elif ls > hs and ls > as and ls > nl %}
-                            <div id="lsiltext">
-                                It has been found Low-grade squamous intraepithelial lesion. These are mild cell abnormalities and could develop into cancer cell. Please consult expert for further information.<br>
-                            </div>
-                        {% elif as > hs and as > ls and as > nl %}
-                            <div id="ascustext">
-                                It has been found Atypical Squamous Cells of Undetermined cell abnormalities. These is low risk of developing cancer. Please consult an expert for further information.<br>
-                            </div>
-                        {% elif nl > hs and nl > ls and nl > as %}
-                            <div id="nilmtext">
-                                It has been found Negative for Intraepithelial Lesion or Malignancy. This means that there are no cancer cells. Please consult an expert for further information.<br>
-                            </div>
-                        {% else %}
-                                    Sorry I'm unable to predict<br>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-
-        <div class="row">
-            <div class="col">
-                <div class="d-flex justify-content-end">
-                    <a href="{% url 'multiclass:home' %}">
-                        <button class='btn btn-outline-dark btn-sm'>Reload</button>
-                    </a>
-                </div>
-
-
-            </div>
-            
-            <div class="col">
-
-                <div class="d-flex justify-content-start">
                     
-                        <button class='btn btn-outline-dark btn-sm' onclick="window.print()">Print </button>
-                    
+                    <div class="col">
+                        <div class="d-flex justify-content-start">
+                             <button class='btn btn-outline-dark btn-sm' onclick="multiclass()">Multiclass</button> 
+                        </div>
+                    </div>       
                 </div>
-
-            </div>
-            
-                
+            </span>
         </div>
+
+            
             
             
             
 
         {% else %}
 
-        <div class="row">
-            <div class="col">
-                <div class="card" id="manual">
-                    <h5 class="card-header">How to use the software</h5>
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <p>
-                                <b>Step 1.</b> Select a file in the box below.<br>
-                                <b>Step 2.</b> Click on Upload.<br>
-                                <b>Step 2.</b> Click on print to print the report.<br>
-                                <b>Step 3.</b> Click on reload to return to this page.
-                            </p>
+            <div class="row">
+                <div class="col">
+                    <div class="card" id="manual">
+                        <h5 class="card-header">How to use the software</h5>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <p>
+                                    <b>Step 1.</b> Select a file in the box below.<br>
+                                    <b>Step 2.</b> Click on Upload.<br>
+                                    <b>Step 2.</b> Click on print to print the report.<br>
+                                    <b>Step 3.</b> Click on reload to return to this page.
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div> 
-        </div>
+                </div> 
+            </div>
 
-        <div class="row">
-            <div class="col">
-                <div class="card" id="fileupload">
-                    <h5 class="card-header">Select Image Here</h5>
-                    <div class="card-body" id="form1">
-                        <div class="mb-3">
-                            <form method="post" enctype="multipart/form-data">
-                                {% csrf_token %}
-                                <div class="row">
-                                    <div class="col-8" id="formandupload">
-                                        <input class="form-control form-control-sm" id="formFileSm" type="file" id="formFile" name="sentFile"/>
-                                        <div class="invalid-feedback">Choose a file.</div>
+            <div class="row">
+                <div class="col">
+                    <div class="card" id="fileupload">
+                        <h5 class="card-header">Select Image Here</h5>
+                        <div class="card-body" id="form1">
+                            <div class="mb-3">
+                                <form method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-8" id="formandupload">
+                                            <input class="form-control form-control-sm" id="formFileSm" type="file" id="formFile" name="sentFile"/>
+                                            <div class="invalid-feedback">Choose a file.</div>
+                                        </div>
+                                        <div class="col" id="divupload">
+                                            <input  type="submit" name="subimt" value="Upload" /> 
+                                        </div>  
                                     </div>
-                                    <div class="col" id="divupload">
-                                        <input  type="submit" name="subimt" value="Upload" /> 
-                                    </div>  
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div> 
+                </div> 
 
 
        
@@ -325,7 +293,7 @@
                     text-shadow:1px 1px rgb(71, 13, 2); 
                 }
 
-                @media  and (nax-width: 500px) {
+                @media  and (max-width: 500px) {
                     .container-fluid,
                     .row,
                     .col,

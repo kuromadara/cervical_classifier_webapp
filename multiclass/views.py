@@ -20,6 +20,7 @@ from django.contrib import messages
 import time
 
 model = load_model('static/models/model_sgd.h5')
+model_binary = load_model('static/models/model.h5')
 
 def login(request):
     msg = ''
@@ -109,6 +110,7 @@ def index(request):
             '''
 
             prediction = model.predict(pred_img)
+            pred_binary = model_binary.predict(pred_img)
 
             #time.sleep(1)
 
@@ -123,19 +125,12 @@ def index(request):
 
             max = hsil + lsil + nl + ascus
 
-            # msg = ''
-            # if request.session.get('userrr'):
-            #     msg = request.session.get('userrr')
-            #     del request.session['userrr']
+            abnormal = round((pred_binary[0][0] * 100), 2)
+            normal = round((pred_binary[0][1] * 100), 2)
 
-            # if (msg != ''):
-            #     for key, value in msg.items():
-            #         if key == 'email':
-            #             userr = value
-            #             break
-            # print('hello',userr)
+            max_binary = normal + abnormal
 
-            # img : file_url for file
+            
             
             context = { 
                 'time' : time_taken,
@@ -144,7 +139,10 @@ def index(request):
                 'nl':nl,
                 'as':ascus, 
                 'img': input_image,
-                'max':max
+                'max':max,
+                'normal' : normal,
+                'abnormal' : abnormal,
+                'max_binary' : max_binary
                 }
 
             return render(request, 'home.html', context)
