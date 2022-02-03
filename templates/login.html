@@ -68,36 +68,34 @@
     </nav>
 
     <div class="container-fluid">
-        <span id="load_content">
+        <span class="parent" id="load_content">
             <div id="beforelogin">
-            <div class=row>
+            <div class="row">
                 <script tyepe="text/javascript">
                     alrt();
                 </script> 
-            
-
-                <div class="row">
-                    <div class="card h-100">
-                        <h5 class="card-header">Cervical Cancer</h5>
-                            <div class="card-body">
-                                •	   Cervical cancer is a type of cancer that occurs in the cells of the cervix — the lower part of the uterus. <br>
-                                •	 Long-lasting infection with certain types of human papillomavirus (HPV) is the main cause of cervical cancer in majority of cases.<br>
-                                •	 Cervical cancer is curable if detected at an early stage.
-                            </div>
+                    <div class="col">
+                        <div class="card">
+                            <h5 class="card-header">Cervical Cancer</h5>
+                                <div class="card-body">
+                                    •	   Cervical cancer is a type of cancer that occurs in the cells of the cervix — the lower part of the uterus. <br>
+                                    •	 Long-lasting infection with certain types of human papillomavirus (HPV) is the main cause of cervical cancer in majority of cases.<br>
+                                    •	 Cervical cancer is curable if detected at an early stage.
+                                </div>
+                        </div>
                     </div>
-                </div>
 
-                <div class="row">
-                    <div class="card h-100">
-                        <h5 class="card-header">Pap Smear</h5>
-                            <div class="card-body">
-                                During a Pap test, your doctor scrapes and brushes cells from your cervix, which are then examined in a lab for abnormalities.<br>
-                                A Pap test can detect abnormal cells in the cervix, including cancer cells and cells that show changes that increase the risk of cervical cancer.
+                    <div class="col">
+                        <div class="card">
+                            <h5 class="card-header">Pap Smear</h5>
+                                <div class="card-body">
+                                    During a Pap test, your doctor scrapes and brushes cells from your cervix, which are then examined in a lab for abnormalities.<br>
+                                    A Pap test can detect abnormal cells in the cervix, including cancer cells and cells that show changes that increase the risk of cervical cancer.
 
-                            
-                            </div>
+                                
+                                </div>
+                        </div>
                     </div>
-                </div>
             </div>
 
             </div>
@@ -112,12 +110,12 @@
         background-size: cover;
         box-sizing: border-box;
     }  
-    .row {
-        margin-top : 20px;
-    }
 
-    .col {
-        margin: 20px auto
+    .parent{
+        width: 100%;
+        height: 100vh;
+        display:grid;
+        place-content: center;
     }
 
     .card  {
@@ -127,21 +125,22 @@
         -webkit-backdrop-filter: blur( 3.0px );
         border-radius: 10px;
         border: 1px solid rgba( 255, 255, 255, 0.18 );
-/*         width: 450px;   */
+        width: 350px;
         align-content: center;
         padding: 0;
         -webkit-border-radius: 4px;
         -moz-border-radius: 4px;
-        border-radius: 4px;
-        margin: auto auto auto auto;
+        border-radius: 15px;
+        display: grid;
+        place-content: center;
     }
         
     .card-body{
         margin: auto auto 0px;
     }
-    .card-text{
-        /* text-align: center; */
-    }
+    /* .card-text{
+        text-align: center;
+    } */
 
     .form-group {
         padding: 5px;
@@ -178,16 +177,7 @@
         width: 1475px;
        
     }
-    /* #aboutsoftimg{
-        float: left;
-        margin: auto auto auto 100px
-    }
-    #aboutsofttxt {
-        margin: auto 70px auto -300px;
-    } */
-    /* #features {
-        margin: 20px auto auto 300px;
-    } */
+   
     #soft {
         margin : 30px 15px 55px 15px; 
     }
@@ -195,19 +185,8 @@
         margin: auto 25px auto -10px;
     }
 
-/*     @media screen and (max-width: 500px) {
-        .container-fluid,
-        .row,
-        .col,
-        .card,
-        .card-body,
-        .card-text,
-        #features {
-            width: 70%;
-            margin : 20px auto;
-        }
- */
-    }
+}
 </style>
 </body>
 </html>
+
